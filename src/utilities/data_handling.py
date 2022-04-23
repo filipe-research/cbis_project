@@ -32,7 +32,7 @@ def unpack_exam_into_images(exam_list, cropped=False):
         for view in VIEWS.LIST:
             if view in exam:
                 print(view, view in exam)
-                for j, image in enumerate(exam[view]):
+                # for j, image in enumerate(exam[view]):
                     image_dict = dict(
                         short_file_path=image,
                         horizontal_flip=exam['horizontal_flip'],
