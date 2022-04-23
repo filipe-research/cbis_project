@@ -31,6 +31,7 @@ def unpack_exam_into_images(exam_list, cropped=False):
     for i, exam in enumerate(exam_list):
         for view in VIEWS.LIST:
             if view in exam:
+                print(view, view in exam)
                 for j, image in enumerate(exam[view]):
                     image_dict = dict(
                         short_file_path=image,
