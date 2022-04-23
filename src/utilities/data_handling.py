@@ -30,20 +30,21 @@ def unpack_exam_into_images(exam_list, cropped=False):
     image_list = []
     for i, exam in enumerate(exam_list):
         for view in VIEWS.LIST:
-            for j, image in enumerate(exam[view]):
-                image_dict = dict(
-                    short_file_path=image,
-                    horizontal_flip=exam['horizontal_flip'],
-                    full_view=view,
-                    side=view[0],
-                    view=view[2:],
-                )
-                if cropped:
-                    image_dict["window_location"] = exam['window_location'][view][j]
-                    image_dict["rightmost_points"] = exam['rightmost_points'][view][j]
-                    image_dict["bottommost_points"] = exam['bottommost_points'][view][j]
-                    image_dict["distance_from_starting_side"] = exam['distance_from_starting_side'][view][j]
-                image_list.append(image_dict)
+            if view in exam:
+                for j, image in enumerate(exam[view]):
+                    image_dict = dict(
+                        short_file_path=image,
+                        horizontal_flip=exam['horizontal_flip'],
+                        full_view=view,
+                        side=view[0],
+                        view=view[2:],
+                    )
+                    if cropped:
+                        image_dict["window_location"] = exam['window_location'][view][j]
+                        image_dict["rightmost_points"] = exam['rightmost_points'][view][j]
+                        image_dict["bottommost_points"] = exam['bottommost_points'][view][j]
+                        image_dict["distance_from_starting_side"] = exam['distance_from_starting_side'][view][j]
+                    image_list.append(image_dict)
     return image_list
 
 
